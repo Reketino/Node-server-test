@@ -75,7 +75,7 @@ At this point, the server begins sprinting uphill like it owes someone money.
 📡 API Routes
 GET /users
 json
-Kopier kode
+
 [
   { "id": 1, "name": "Bear" }
 ]
