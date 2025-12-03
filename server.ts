@@ -1,0 +1,29 @@
+import express from "express";
+import type { Request, Response } from "express";
+
+
+const app = express();
+app.use(express.json());
+
+interface User {
+    id: number;
+    name: string;
+}
+
+
+let users: User[] = [{ id: 1, name: "Bear"}];
+
+app.get("/users", (req: Request, res: Response) => {
+    res.json(users);
+});
+
+app.post("/users", (req: Request, res: Response) => {
+    const { name } = req.body as { name: string };
+    const newUser: User = { id: users.length + 1, name};
+    users.push(newUser);
+    res.json(newUser);
+});
+
+app.listen(3001, () => {
+    console.log("Reketinos TSX server running for his life at http://localhost:3001")
+});
