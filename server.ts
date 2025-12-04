@@ -1,7 +1,7 @@
 import express from "express";
 import type { Request, Response } from "express";
+import mongoose from "mongoose";
 import "dotenv/config";
-
 
 const app = express();
 app.use(express.json());
@@ -26,6 +26,14 @@ app.post("/users", (req: Request, res: Response) => {
 
 app.listen(3001, () => {
   console.log(
-   "Reketino's TSX server is sprinting for its f***ing life at http://localhost:3001 🏃‍♂️💨"
+    "Reketino's TSX server is sprinting for its f***ing life at http://localhost:3001 🏃‍♂️💨"
   );
 });
+
+mongoose
+  .connect(process.env.MONGO_URI!)
+  .then(() => console.log("Påkoblet MongoDB Lokomotivet"))
+  .catch((err) => {
+    console.error("påkoblingen til MongoDB Lokomotivet Feilet");
+    process.exit(1);
+  });
